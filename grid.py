@@ -1,5 +1,4 @@
 import pygame
-LIGHT_GREY = (55, 55, 55)
 
 class Grid(object):
     def __init__(self, width, height, cell_size):
@@ -11,12 +10,11 @@ class Grid(object):
     def draw(self, window):
         for row in range(self.rows):
             for col in range(self.columns):
-                color = LIGHT_GREY
                 particle = self.cells[row][col]
                 if particle is not None:
                     color = particle.color
-                rect = (col*self.cell_size, row*self.cell_size, self.cell_size, self.cell_size)
-                pygame.draw.rect(window, color, rect)
+                    rect = (col*self.cell_size, row*self.cell_size, self.cell_size, self.cell_size)
+                    pygame.draw.rect(window, color, rect)
 
     def is_in_grid(self, row, col):
         return 0 <= row < self.rows and 0 <= col < self.columns
@@ -42,4 +40,9 @@ class Grid(object):
         if self.is_in_grid(row, col):
             return self.cells[row][col]
         raise ValueError("cell is not in grid")
+    
+    def clear(self):
+        for row in range(self.rows):
+            for col in range(self.columns):
+                self.remove_particle(row, col)
     

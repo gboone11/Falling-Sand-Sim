@@ -18,19 +18,8 @@ sim = Simulation(WINDOW_WIDTH, WINDOW_HEIGHT, CELL_SIZE)
 
 # Simulation loop
 while True:
-
     # 1. Check Event
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-
-    buttons = pygame.mouse.get_pressed()
-    if buttons[0]:
-        pos = pygame.mouse.get_pos()
-        row = pos[1] // CELL_SIZE
-        col = pos[0] // CELL_SIZE
-        sim.add_particle(row, col)
+    sim.handle_events()
 
     # 2. Update Grid
     sim.update()
