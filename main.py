@@ -6,9 +6,9 @@ from simulation import *
 pygame.init()
 
 WINDOW_WIDTH, WINDOW_HEIGHT = 800, 600
-FPS = 30
+FPS = 120
 GREY = (29, 29, 29)
-CELL_SIZE = 20
+CELL_SIZE = 6
 
 window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 pygame.display.set_caption("Falling Sand Sim")
