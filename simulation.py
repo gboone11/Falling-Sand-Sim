@@ -15,7 +15,7 @@ class Simulation(object):
         self.grid.remove_particle(row, col)
 
     def update(self):
-        for row in range(self.grid.rows):
+        for row in range(self.grid.rows-2, -1, -1):
             for col in range(self.grid.columns):
                 particle = self.grid.get_cell(row, col)
                 if particle is not None:
