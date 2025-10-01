@@ -91,7 +91,7 @@ class Simulation(object):
         if self.mode == "rock":
             color = (100, 100, 100)
         elif self.mode == "sand":
-            color = (185, 142, 100)
+            color = (217, 193, 97)
         elif self.mode == "erase":
             color = (255, 105, 180)
 

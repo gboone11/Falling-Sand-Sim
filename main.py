@@ -3,6 +3,7 @@ from simulation import *
 
 
 pygame.init()
+pygame.mouse.set_visible(False)
 
 WINDOW_WIDTH, WINDOW_HEIGHT = 800, 600
 FPS = 120
