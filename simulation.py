@@ -3,15 +3,22 @@ from grid import *
 from particle import *
 
 class Simulation(object):
-    def __init__(self, width, height, cell_size):
+    def __init__(self, width, height, cell_size, brush_size):
         self.grid = Grid(width, height, cell_size)
         self.cell_size = cell_size
+        self.mode = "sand"
+        self.brush_size = brush_size
 
     def draw(self, window):
         self.grid.draw(window)
 
     def add_particle(self, row, col):
-        self.grid.add_particle(row, col, SandParticle)
+        if self.mode == "sand":
+            particle = SandParticle
+        elif self.mode == "rock":
+            particle = RockParticle
+
+        self.grid.add_particle(row, col, particle)
 
     def remove_particle(self, row, col):
         self.grid.remove_particle(row, col)
@@ -33,11 +40,11 @@ class Simulation(object):
         if event.key == pygame.K_SPACE:
             self.restart()
         elif event.key == pygame.K_0:
-            print("Eraser Selected")
+            self.mode = "erase"
         elif event.key == pygame.K_1:
-            print("Sand Particle Selected")
+            self.mode = "sand"
         elif event.key == pygame.K_2:
-            print("Rock Particle Selected")
+            self.mode = "rock"
 
     def handle_mouse(self):
         buttons = pygame.mouse.get_pressed()
@@ -45,7 +52,8 @@ class Simulation(object):
             pos = pygame.mouse.get_pos()
             row = pos[1] // self.cell_size
             col = pos[0] // self.cell_size
-            self.add_particle(row, col)
+
+            self.apply_brush(row, col)
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -56,3 +64,11 @@ class Simulation(object):
                 self.handle_key(event)
 
         self.handle_mouse()
+
+    def apply_brush(self, row, col):
+        for r in range(self.brush_size):
+            for c in range(self.brush_size):
+                if self.mode == "erase":
+                    self.remove_particle(row+r, col+c)
+                else:
+                    self.add_particle(row+r, col+c)
