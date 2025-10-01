@@ -4,13 +4,24 @@ from particle import *
 import random
 
 class Simulation(object):
-    def __init__(self, width, height, cell_size, brush_size):
+    def __init__(self, width: int, height: int, cell_size: int, brush_size: int) -> None:
+        """inits Simulation object
+
+        :param int width: width of simulation window
+        :param int height: height of simulation window
+        :param int cell_size: size of cell in simulation in pixels
+        :param int brush_size: size of brush in pixels
+        """
         self.grid = Grid(width, height, cell_size)
         self.cell_size = cell_size
-        self.mode = "sand"
+        self.mode = "sand"  # defines drawing mode for add_particle() and apply_brush()
         self.brush_size = brush_size
 
-    def draw(self, window):
+    def draw(self, window: pygame.Surface) -> None:
+        """draws on window
+
+        :param pygame.Surface window: simulation window object
+        """
         self.grid.draw(window)
         self.draw_brush(window)
 
