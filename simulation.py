@@ -17,7 +17,7 @@ class Simulation(object):
     def update(self):
         for row in range(self.grid.rows):
             for col in range(self.grid.columns):
-                particle = self.grid.get_cell(row, col):
+                particle = self.grid.get_cell(row, col)
                 if particle is not None:
                     new_pos = particle.update(self.grid, row, col)
                     if new_pos != (row, col):

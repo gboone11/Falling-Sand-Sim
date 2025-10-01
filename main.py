@@ -6,7 +6,7 @@ from simulation import *
 pygame.init()
 
 WINDOW_WIDTH, WINDOW_HEIGHT = 800, 600
-FPS = 120
+FPS = 30
 GREY = (29, 29, 29)
 CELL_SIZE = 20
 
@@ -31,7 +31,9 @@ while True:
         row = pos[1] // CELL_SIZE
         col = pos[0] // CELL_SIZE
         sim.add_particle(row, col)
+
     # 2. Update Grid
+    sim.update()
 
     # 3. Draw Grid
     window.fill(GREY)
