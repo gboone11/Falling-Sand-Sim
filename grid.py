@@ -17,3 +17,20 @@ class Grid(object):
                     color = particle.color
                 rect = (col*self.cell_size, row*self.cell_size, self.cell_size-1, self.cell_size-1)
                 pygame.draw.rect(window, color, rect)
+
+    def is_in_grid(self, row, col):
+        return 0 <= row < self.rows and 0 <= col < self.columns
+
+    def add_particle(self, row, col, particle_type):
+        if self.is_in_grid():
+            self.cells[row][col] = particle_type()
+
+    def remove_particle(self, row, col):
+        if self.is_in_grid():
+            self.cells[row][col] = None
+
+    def is_cell_empty(self, row, col):
+        if self.is_in_grid():
+            return self.cells[row][col] is None
+
+    

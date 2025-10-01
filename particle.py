@@ -1,4 +1,3 @@
-import pygame
 import random
 import colorsys
 
@@ -13,3 +12,6 @@ class SandParticle(object):
 
         r, g, b = colorsys.hsv_to_rgb(hue, saturation, value)
         return int(r*255), int(g*255), int(b*255)
+    
+    def update(self, grid, row, col):
+        pass
